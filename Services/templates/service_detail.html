@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}service detail page{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="">
+    <div class="card-body rounded mx-2" style="background-color: rgb(211, 86, 163); margin-top: 5px;">
+    <h1 class="text-light">{{service.service_name}}</h1>
+    <p class="text-white">{{service.service_detail}}</p>
+    <h5 class="text-white">Service Cost : {{service.service_price}}.00 tk</h5>
+        <div>    
+            <button class="btn btn-success"><a class="text-decoration-none text-light" href="{% url 'service_order_page' %}">Order</a></button>
+            <button class="btn btn-success"> <a class="text-decoration-none text-light" href="{% url 'service_cart_page' %}">Add Cart</a></button>   
+        </div>
+    </div>
+    <div> 
+        <div class="card m-2 " style="background-color: rgb(112, 238, 238);">
+            <div class="card_body m-3 w-75 ">
+                <form method="post" class="">
+                    {% csrf_token %}
+                    {{comment_form | crispy}}
+                    <button class="btn btn-success" type="submit">submit</button>
+                </form>
+            </div>
+        </div>
+    
+        <div class="card m-2">
+            <h5 class="p-3">Total Comments : {{comments | length}}</h5>
+            {% for cmt in comments %}
+            <div class="card-body border m-2">
+                <p><b>{{cmt.user.username}}</b></p>
+                <h4>{{cmt.rating}}/h4>
+                <p>{{cmt.comment}}</p> 
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+</div>
+{% endblock %}

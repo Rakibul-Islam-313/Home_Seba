@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}service page{% endblock %}
+{% block content %}
+<div class="h-50 d-flex flex-wrap px-3 pt-5">
+    {% for i in data %}
+    <div class="col-sm-4 mt-2 mb-4 h-50">
+        <div class="card mx-2">
+            <div style="background-color: rgb(64, 177, 225);" class="card-body rounded h-50">
+                <div class="card-body">
+                    <h5 class="text-danger">{{i.service_name}}</h5>
+                    <hr class="bg-dark">
+                    <p class="text-dark">{{i.service_detail | truncatewords:15}}</p>
+                    <div>
+                        <button class="btn btn-dark"><a href="{% url 'service_detail_page' id=i.id %}" class="text-decoration-none text-light">Details</a></button>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}cart page{% endblock %}
+{% block content %}
+<div>
+    <table class="table">
+       <thead>
+         <tr>
+           <th scope="col">Service Name</th>
+           <th scope="col">Details</th>
+           <th scope="col">Service Cost</th>
+           <th scope="col">Action</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr>
+           <td>{{ServiceCart.service_name}}</td>
+           <td>{{ServiceCart.service_detail|truncatewords:6}}</td>
+           <td>{{ServiceCart.service_price}}</td>
+         </tr>
+       </tbody>
+     </table>
+ </div>
+{% endblock %}
